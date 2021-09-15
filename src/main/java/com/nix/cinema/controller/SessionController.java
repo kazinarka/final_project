@@ -70,27 +70,15 @@ public class SessionController {
         return "redirect:/admin/session";
     }
 
-
-    @RequestMapping(value = "/admin/session", method = RequestMethod.GET, params = {"cinemaId"})
-    public String allSessionByCinema(@RequestParam Long cinemaId, Model model) {
-        model.addAttribute("cinemaId", cinemaId);
-        return "/admin/session";
-    }
-
     @RequestMapping(value = "/admin/session", method = RequestMethod.GET)
     public String allSession(Model model) {
         model.addAttribute("sessions", filmSessionService.getAllSession());
         return "/admin/session";
     }
 
-    @RequestMapping(value = "/session", method = RequestMethod.GET, params = {"cinemaId"})
-    public String allSessionByCinemaUser(@RequestParam Long cinemaId, Model model) {
-        model.addAttribute("cinemaId", cinemaId);
-        return "/session";
-    }
-
     @RequestMapping(value = "/session", method = RequestMethod.GET, params = {"hallId"})
     public String allSessionByHallUser(@RequestParam Long hallId, Model model) {
+        model.addAttribute("sessions", filmSessionService.getAllSessionByHall(hallId));
         return "/session";
     }
 

@@ -61,8 +61,8 @@
             </th:block>
         </table>
     </div>
-    <div th:if="${cinemaId} != null">
-        <a href="/admin/add/cinema.html" th:href="@{/admin/add/session (cinemaId = ${cinemaId})}">
+    <div>
+        <a href="/admin/add/cinema.html" th:href="@{/admin/add/session}">
             <button type="button" class="btn btn-default">Новый сеанс</button>
         </a>
     </div>

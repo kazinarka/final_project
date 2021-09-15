@@ -49,12 +49,12 @@
                 <td th:text="${row.rowIndex}"></td>
                 <td th:text="${row.seats}"></td>
                 <td>
-                    <a th:href="@{/admin/edit/row (rowIndex = ${row.rowIndex}, hallId = ${row.hallId})}">
+                    <a th:href="@{/admin/edit/row (rowIndex = ${row.rowIndex}, hallId = ${row.hall.id})}">
                         <button type="button" class="btn btn-default">Редактировать</button>
                     </a>
                 </td>
                 <td>
-                    <a th:href="@{/admin/delete/row (rowIndex = ${row.rowIndex}, hallId = ${row.hallId})}">
+                    <a th:href="@{/admin/delete/row (rowIndex = ${row.rowIndex}, hallId = ${row.hall.id})}">
                         <button type="button" class="btn btn-default">Удалить</button>
                     </a>
                 </td>
@@ -62,8 +62,8 @@
             </th:block>
         </table>
     </div>
-    <div th:if="${cinemaId} != null">
-        <a href="/admin/add/cinema.html" th:href="@{/admin/add/row (cinemaId = ${cinemaId}, hallId = ${hallId})}">
+    <div>
+        <a href="/admin/add/cinema.html" th:href="@{/admin/add/row}">
             <button type="button" class="btn btn-default">Новый ряд</button>
         </a>
     </div>

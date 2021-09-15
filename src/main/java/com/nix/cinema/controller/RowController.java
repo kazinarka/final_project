@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -28,6 +26,18 @@ public class RowController {
         this.rowService = rowService;
         this.cinemaService = cinemaService;
         this.hallService = hallService;
+    }
+
+    @RequestMapping(value = "/admin/row", method = RequestMethod.GET, params = {"hallId"})
+    public String allRowByCinema(@RequestParam Long hallId, Model model) {
+        model.addAttribute("rows", rowService.getAllRowByHall(hallId));
+        return "/admin/row";
+    }
+
+    @RequestMapping(value = "/row", method = RequestMethod.GET, params = {"hallId"})
+    public String allRowByCinemaUser(@RequestParam Long hallId, Model model) {
+        model.addAttribute("rows", rowService.getAllRowByHall(hallId));
+        return "/row";
     }
 
     @GetMapping("/admin/add/row")

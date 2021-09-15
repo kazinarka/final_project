@@ -38,6 +38,12 @@ public class HallController {
         return "/hall";
     }
 
+    @RequestMapping(value = "/admin/hall", method = RequestMethod.GET, params = {"cinemaId"})
+    public String allHallByCinema(@RequestParam Long cinemaId, Model model) {
+        model.addAttribute("halls", hallService.getAllHallByCinema(cinemaId));
+        return "/admin/hall";
+    }
+
     @RequestMapping(value = "/hall", method = RequestMethod.GET, params = {"cinemaId"})
     public String allHallByCinemaUser(@RequestParam Long cinemaId, Model model) {
         model.addAttribute("halls", hallService.getAllHallByCinema(cinemaId));
@@ -52,10 +58,7 @@ public class HallController {
     }
 
     @RequestMapping(value = "/admin/add/hall", method = RequestMethod.POST)
-    public String addHall(@Valid Hall hall, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "redirect:/admin/hall";
-        }
+    public String addHall(@Valid Hall hall, Model model) {
         hallService.addHall(hall);
         return "redirect:/admin/hall";
     }
@@ -72,5 +75,11 @@ public class HallController {
     public String deleteHall(@RequestParam Long hallId, Model model) {
         hallService.deleteHallByID(hallId);
         return "redirect:/admin/hall";
+    }
+
+    @RequestMapping(value = "/details/hall", method = RequestMethod.GET)
+    public String getFilm(@RequestParam Long hallId, Model model) {
+        model.addAttribute("hall", hallService.getHallByID(hallId));
+        return "/details/hall";
     }
 }

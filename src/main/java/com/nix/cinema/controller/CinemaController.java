@@ -39,7 +39,7 @@ public class CinemaController {
     }
 
     @RequestMapping(value = "/admin/add/cinema", method = RequestMethod.POST)
-    public String addCinema(@Valid Cinema cinema, BindingResult bindingResult, Model model) {
+    public String addCinema(@Valid Cinema cinema, Model model) {
         cinemaService.addCinema(cinema);
         return "redirect:/admin/cinema";
     }

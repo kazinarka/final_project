@@ -57,10 +57,7 @@ public class ActorController {
     }
 
     @RequestMapping(value = "/admin/add/actor", method = RequestMethod.POST)
-    public String addActor(@Valid Actor actor, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            return "error";
-        }
+    public String addActor(@Valid Actor actor, Model model) {
         actorService.addActor(actor);
         return "redirect:/admin/actor";
     }

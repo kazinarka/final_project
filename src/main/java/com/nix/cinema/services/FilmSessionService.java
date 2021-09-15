@@ -14,5 +14,7 @@ public interface FilmSessionService {
 
     List<FilmSession> getAllSessionByFilm(Long filmId);
 
+    List<FilmSession> getAllSessionByHall(Long hallId);
+
     FilmSession getSessionById(Long id);
 }
