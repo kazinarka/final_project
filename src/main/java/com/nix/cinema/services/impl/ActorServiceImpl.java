@@ -34,7 +34,7 @@ public class ActorServiceImpl implements ActorService {
     }
 
     public Page<Actor> getAllActorsPage(Integer pageNumber) {
-        return actorRepository.findAll(PageRequest.of(pageNumber - 1,pageSize,Sort.by(Sort.Direction.ASC,"lastName")));
+        return actorRepository.findAll(PageRequest.of(pageNumber - 1, pageSize, Sort.by(Sort.Direction.ASC, "lastName")));
     }
 
     public Actor getActorByID(Long id) {

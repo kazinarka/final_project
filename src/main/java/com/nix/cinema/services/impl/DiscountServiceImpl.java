@@ -27,7 +27,7 @@ public class DiscountServiceImpl implements DiscountService {
     }
 
     public void deleteDiscountByID(Long id) {
-        if(getDiscountByID(id) != null) {
+        if (getDiscountByID(id) != null) {
             discountRepository.deleteById(id);
         }
     }

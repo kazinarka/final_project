@@ -59,6 +59,7 @@ public class TicketController {
         model.addAttribute("tickets", new ArrayList<Integer>());
         return "/tickets";
     }
+
     private String getPrincipal() {
         String userName;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
