@@ -1,7 +1,9 @@
 package com.nix.cinema.services.impl;
 
+import com.nix.cinema.model.Hall;
 import com.nix.cinema.model.Ticket;
 import com.nix.cinema.repository.TicketRepository;
+import com.nix.cinema.repository.UserRepository;
 import com.nix.cinema.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,14 +20,20 @@ public class TicketServiceImpl implements TicketService {
     private Integer pageSize;
 
     private final TicketRepository ticketRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public TicketServiceImpl(TicketRepository ticketRepository) {
+    public TicketServiceImpl(TicketRepository ticketRepository, UserRepository userRepository) {
         this.ticketRepository = ticketRepository;
+        this.userRepository = userRepository;
     }
 
     public Page<Ticket> findAll(Integer pageNumber) {
         return ticketRepository.findAll(PageRequest.of(pageNumber - 1, pageSize));
+    }
+
+    public List<Ticket> getAllTicketByUser(Long userId) {
+        return ticketRepository.findByUser(userRepository.findById(userId));
     }
 
     public List<Ticket> getAllTicket() {

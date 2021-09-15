@@ -3,6 +3,7 @@ package com.nix.cinema.controller;
 import com.nix.cinema.model.Discount;
 import com.nix.cinema.model.User;
 import com.nix.cinema.services.DiscountService;
+import com.nix.cinema.services.TicketService;
 import com.nix.cinema.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,11 +22,13 @@ public class UserController {
 
     private final UserService userService;
     private final DiscountService discountService;
+    private final TicketService ticketService;
 
     @Autowired
-    public UserController(UserService userService, DiscountService discountService) {
+    public UserController(UserService userService, DiscountService discountService, TicketService ticketService) {
         this.userService = userService;
         this.discountService = discountService;
+        this.ticketService = ticketService;
     }
 
     @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
@@ -60,6 +63,7 @@ public class UserController {
         model.addAttribute("user", userService.findByUsername(getPrincipal()));
         model.addAttribute("allDiscounts", discountService.getAllDiscount());
         model.addAttribute("discount", new Discount());
+        model.addAttribute("tickets", ticketService.getAllTicket());
         return "/user";
     }
 
